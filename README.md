@@ -1,3 +1,2 @@
 # blindtyping
-huitsa
-vitalya, pososi glubochaishe
+dima idi nahui
