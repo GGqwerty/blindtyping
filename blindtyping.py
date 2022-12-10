@@ -58,7 +58,8 @@ def find_word(currLength):
         else:
             currWord.append(dict[indexForDict])
             currLength-=i+1
-            bool[indexForDict] = 1
+            if indexForDict != 0:
+                bool[indexForDict] = 1
     return currWord
 
 def word_for_length(theLength):
@@ -72,7 +73,7 @@ def word_for_length(theLength):
 """"""
 Flag=False
 
-while lengthall>0:
+while lengthall > 0 and lengthall < 120:
 
     if not (Flag):
         str1=find_word(lengthall)
@@ -131,7 +132,18 @@ while lengthall>0:
     print()
     if flagYbav:
         lengthall-=2
-print('You are winner sun')        
+
+if language:
+    if lengthall<=0:
+        print('You are winner sun')
+    else:
+        print('Unfortunately, you are loser, sun')
+else:
+    if lengthall<=0:
+        print('Вы победили!')
+    else:
+        print('К сожалению, вы проиграли!')
+
     
 
 
