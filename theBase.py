@@ -1,6 +1,6 @@
 from random import randint
 
-f = open('dictionary.txt')
+f = open('EngDictionary.txt')
 dict = f.readline()
 dict = dict.split(' ')
 LEFT_BORDERS = [0,52,104,304,504,704,904,1104,1304,1504]
@@ -17,8 +17,11 @@ def find_word(currLength):
         currWord.append(dict[indexForDict])
         currLength-=i+1
     return currWord
+#sda
 find_word(20)
 print(currWord)
+
+# dsadasdAs
 
 print(len(dict))
 f.close()
