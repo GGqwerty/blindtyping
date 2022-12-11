@@ -1,6 +1,5 @@
-lengthall=20
+lengthall = 20
 from random import randint
-
 
 print('Please enter the language that you want to test blind testing in:')
 print('English: 1')
@@ -11,11 +10,11 @@ print('Английский: 1')
 print('Русский: 0')
 print('')
 
-valid=False
+valid = False
 while not valid:
     try:
         language = int(input())
-        if (language!=1) and (language!=0):
+        if (language != 1) and (language != 0):
             raise ZeroDivisionError
         else:
             valid = True
@@ -23,9 +22,6 @@ while not valid:
         print('Invalid input: try again!')
         print('Неверный ввод: попробуйте снова!')
 
-
-# 1 - это англ, 0 - это русский
-language = 1
 if language:
     f = open('Dictionary.txt')
     dict = f.readline()
@@ -35,156 +31,117 @@ if language:
     bool = [0] * 1704
     f.close()
 else:
-    #   f = open('      Dictionary FOR RUSSIAN   .txt')
-    # dict = f.readline()
-    # dict = dict.split(' ')
-    LEFT_BORDERS = [0,    66,     132,332,532,732,932,1132,1332,1532]
-    RIGHT_BORDERS = [65,    131,    331,531,731,931,1131,1331,1531,1731]
-    bool = [0] * 1732
-    # f.close()
-
+    f = open('DictionaryRUS.txt')
+    dict = f.readline()
+    dict = dict.split(' ')
+    LEFT_BORDERS = [0, 66, 116, 316, 516, 716, 916, 1116, 1316, 1516]
+    RIGHT_BORDERS = [65, 115, 315, 515, 715, 915, 1115, 1315, 1515, 1715]
+    bool = [0] * 1716
+    f.close()
 
 currWord = []
+
+
 def find_word(currLength):
-    currWord=[]
-    while currLength!=0:
+    currWord = []
+    while currLength != 0:
         if currLength >= 10:
-            i = randint(1,10)-1
+            i = randint(1, 10) - 1
         else:
-            i = randint(1,currLength)-1
-        indexForDict = randint(LEFT_BORDERS[i],RIGHT_BORDERS[i])
+            i = randint(1, currLength) - 1
+        indexForDict = randint(LEFT_BORDERS[i], RIGHT_BORDERS[i])
         if bool[indexForDict]:
             pass
         else:
             currWord.append(dict[indexForDict])
-            currLength-=i+1
+            currLength -= i + 1
             if indexForDict != 0:
                 bool[indexForDict] = 1
     return currWord
 
+
 def word_for_length(theLength):
-    theLength-=1
-    indexForDict = randint(LEFT_BORDERS[theLength],RIGHT_BORDERS[theLength])
+    theLength -= 1
+    indexForDict = randint(LEFT_BORDERS[theLength], RIGHT_BORDERS[theLength])
     while bool[indexForDict]:
         indexForDict = randint(LEFT_BORDERS[theLength], RIGHT_BORDERS[theLength])
     oneWord = dict[indexForDict]
     bool[indexForDict] = 1
     return oneWord
+
+
 """"""
-Flag=False
+Flag = False
 
 while lengthall > 0 and lengthall < 120:
 
     if not (Flag):
-        str1=find_word(lengthall)
+        str1 = find_word(lengthall)
     else:
-        str1=strarray
+        str1 = strarray
     for i in str1:
-        print(i,end=' ')
+        print(i, end=' ')
     print()
-        
 
-    strarray=[]
-    str2=input().split(' ')
-    flagYbav=True
-    Flag=False
-    if len(str1)>len(str2):
-        Flag=True
-        flagYbav=False
+    strarray = []
+    str2 = input().split(' ')
+    flagYbav = True
+    Flag = False
+    if len(str1) > len(str2):
+        Flag = True
+        flagYbav = False
 
-    for i in range(len(str1)):    
-        buf=[]
+    for i in range(len(str1)):
+        buf = []
         for j in range(len(str1[i])):
             buf.append(1)
-        if i>len(str2)-1:
+        if i > len(str2) - 1:
             for j in range(len(str1[i])):
-                buf[j]+=1
-                lengthall+=1
+                buf[j] += 1
+                lengthall += 1
 
 
         else:
             for j in range(len(str1[i])):
-                if j>len(str2[i])-1:
-                    Flag=True
-                    buf[j]+=1
-                    lengthall+=1
-                    flagYbav=False
+                if j > len(str2[i]) - 1:
+                    Flag = True
+                    buf[j] += 1
+                    lengthall += 1
+                    flagYbav = False
                 else:
-                    if str1[i][j]!=str2[i][j]:
-                        Flag=True
-                        buf[j]+=1
-                        lengthall+=1
-                        flagYbav=False
-        s=''
-        k=[]
+                    if str1[i][j] != str2[i][j]:
+                        Flag = True
+                        buf[j] += 1
+                        lengthall += 1
+                        flagYbav = False
+        s = ''
+        k = []
         if Flag:
             for j in range(len(str1[i])):
-                
+
                 for g in range(buf[j]):
-                    s=s+str1[i][j]
+                    s = s + str1[i][j]
         else:
-            s=str1[i]
-        if len(s)==len(str1[i]):
-            k=find_word(len(str1[i]))
-            strarray=strarray+k
+            s = str1[i]
+        if len(s) == len(str1[i]):
+            k = find_word(len(str1[i]))
+            strarray = strarray + k
         else:
             strarray.append(s)
     print()
     if flagYbav:
-        lengthall-=2
+        lengthall -= 2
 
 if language:
-    if lengthall<=0:
+    if lengthall <= 0:
         print('You are winner sun')
     else:
         print('Unfortunately, you are loser, sun')
 else:
-    if lengthall<=0:
+    if lengthall <= 0:
         print('Вы победили!')
     else:
         print('К сожалению, вы проиграли!')
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 """
 from random import randint
