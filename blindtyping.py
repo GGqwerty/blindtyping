@@ -87,11 +87,13 @@ while lengthall > 0 and lengthall < 120:
     str2 = input().split(' ')
     flagYbav = True
     Flag = False
+    
     if len(str1) > len(str2):
         Flag = True
         flagYbav = False
 
     for i in range(len(str1)):
+        flagDlinnee=False
         buf = []
         for j in range(len(str1[i])):
             buf.append(1)
@@ -114,6 +116,15 @@ while lengthall > 0 and lengthall < 120:
                         buf[j] += 1
                         lengthall += 1
                         flagYbav = False
+            if len(str1[i]) < len(str2[i]):
+                flagDlinnee=True
+                Flag = True
+                flagYbav=False
+                
+
+
+
+            
         s = ''
         k = []
         if Flag:
@@ -123,7 +134,7 @@ while lengthall > 0 and lengthall < 120:
                     s = s + str1[i][j]
         else:
             s = str1[i]
-        if len(s) == len(str1[i]):
+        if (len(s) == len(str1[i])) and (not(flagDlinnee)):
             k = find_word(len(str1[i]))
             strarray = strarray + k
         else:
