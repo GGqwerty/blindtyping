@@ -1,4 +1,5 @@
 lengthall = 20
+chancesOfRandom=[3,9,17,25,33,41,49,57,65,73]           # шансы: 3,6,8,8,8,8,8,8,8,8
 from random import randint
 
 print('Please enter the language that you want to test blind testing in:')
@@ -54,11 +55,23 @@ def find_word(currLength):
     currWord = []
     while currLength != 0:
         if currLength >= 10:
-            i = randint(1, 10) - 1
+            bufferIndex = randint(1, 73)
+            i = 0
+            if bufferIndex in range(1, 4):
+                pass
+            else:
+                while i < 9 and bufferIndex > chancesOfRandom[i]:
+                    i += 1
             clearing(i)
 
         else:
-            i = randint(1, currLength) - 1
+            bufferIndex = randint(1, chancesOfRandom[currLength - 1])
+            i = 0
+            if bufferIndex in range(1, 4):
+                pass
+            else:
+                while i < 9 and bufferIndex > chancesOfRandom[i]:
+                    i += 1
             clearing(i)
 
         indexForDict = randint(LEFT_BORDERS[i], RIGHT_BORDERS[i])
@@ -163,7 +176,6 @@ else:
         print('Вы победили!')
     else:
         print('К сожалению, вы проиграли!')
-
 
 
 
